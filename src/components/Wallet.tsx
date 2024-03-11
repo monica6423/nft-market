@@ -5,6 +5,7 @@ import { ethers } from 'ethers';
 import Web3Modal from 'web3modal';
 import { shortenString } from '../utils';
 import { supportedNetworks, networkIdToNameMap } from '../config';
+import styles from './styles.module.css';
 
 const Wallet = () => {
   const {
@@ -89,8 +90,8 @@ const Wallet = () => {
         </div>
       )}
       {!address ? (
-        <button className="btn btn-sm btn-outline-secondary" onClick={connectWallet}>
-          Connect
+        <button className={`btn ${styles.mainButton}`} onClick={connectWallet}>
+          Connect Wallet
         </button>
       ) : (
         <button className="btn btn-sm btn-outline-secondary" onClick={disconnectWallet}>
