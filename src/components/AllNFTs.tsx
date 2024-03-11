@@ -1,13 +1,8 @@
 import React from 'react';
 import { useState, useEffect, useContext, useCallback } from 'react';
-import { useParams } from 'react-router-dom';
-import { ethers } from 'ethers';
-import axios from 'axios';
-import Web3Modal from 'web3modal';
 import { Context } from '../context/context';
 import NFTCard from './NFTCard';
 // import Spinner from './Spinner';
-import { nftAddress, marketplaceAddress } from '../config';
 import { ItemWithMetadata } from '../types';
 import { getAllNFTs } from '../hooks';
 
@@ -36,7 +31,7 @@ const SingleNFT = () => {
 
   if (loading)
     return (
-      <div className="container d-flex justify-content-center">
+      <div className="container min-vh-100 d-flex justify-content-center">
         {/* <Spinner size={'large'} /> */}
         <p>Loading...</p>
       </div>
@@ -44,13 +39,13 @@ const SingleNFT = () => {
 
   if (!loading && !items.length)
     return (
-      <div className="container d-flex justify-content-center">
+      <div className="container min-vh-100 d-flex justify-content-center">
         <h1 className="">No items</h1>
       </div>
     );
 
   return (
-    <div className="container">
+    <div className="container min-vh-100">
       <div className="row d-flex align-content-start flex-wrap gy-1">
         {items.map((item, i) => {
           return (

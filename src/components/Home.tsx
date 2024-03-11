@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { useTrail, a } from '@react-spring/web';
 import styles from './styles.module.css';
 import { motion } from 'framer-motion';
+import Art1 from '../assets/art_1.svg'
+import Art2 from '../assets/art_2.svg'
+import Art3 from '../assets/art_3.svg'
 
 interface Props {
   children: React.ReactNode;
@@ -29,20 +32,37 @@ const Trail: React.FC<Props> = ({ open, children }) => {
   )
 }
 
+const container = {
+  hidden: { opacity: 1, scale: 0 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delayChildren: 0.4,
+      staggerChildren: 0.3
+    }
+  }
+};
+
+const item = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1
+  }
+};
 
 const Home = () => {
   const [open, set] = useState(true)
   return (
-    <div className={`p-5 mb-4 ${styles.main}`}>
-      <div className="container py-5">
-        <h1 className="display-5 fw-bold">NFT Market</h1>
+    <div className={`px-5 pt-5 ${styles.main}`}>
+      <div className={`container py-1 position-relative ${styles.heroSlogan}`}>
         <Trail open={open}>
-          <span>Make Marvellous Art</span>
-          <span>with the best</span>
+          <span>Make Marvellous NFT Art</span>
+          <span className="p-5">with the best</span>
           <span>NFT creator</span>
         </Trail>
-        <p className="col-md-8 fs-4 mb-2">Peer-to-peer NFT trading and minting.</p>
-        
+        <p className={`col-md-6 fs-4 mb-2 ${styles.paragraph}`}>Peer-to-peer NFT trading and minting. Empower your unique digital arts with photos with crypto and become a digital artist</p>
         <motion.div
           className={styles.box}
           initial={{ scale: 0 }}
@@ -50,28 +70,59 @@ const Home = () => {
           transition={{
             type: "spring",
             stiffness: 260,
-            damping: 20
+            damping: 60,
+            delay: 0.4
           }}
         >
           <Link to="/items" className={`btn btn-outline-secondary ${styles.button}`}>
              Browse NFTs
           </Link>
         </motion.div>
-  
         <motion.div
-          className={styles.transparent}
+          className={`${styles.transparent}`}
           initial={{ scale: 0 }}
-          animate={{  scale: 1 }}
+          animate={{ scale: 1 }}
           transition={{
             type: "spring",
             stiffness: 260,
-            damping: 20
+            damping: 60,
+            delay: 0.6
           }}
         >
           <Link to="/mint" className={`btn btn-outline-secondary ${styles.mainButton}`}>
-            Mint NFTs
+            Minting NFTs
           </Link>
         </motion.div>
+        <div className="container">
+          <motion.ul
+            className="row justify-content-end"
+            variants={container}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.div variants={item} className={`card m-3 ${styles.artcard}`} style={{width: '15rem'}}>
+              <img className={`card-img-top ${styles.artimage}`} src={Art1} alt="Card image cap" />
+              <div className="card-body">
+                <h5 className="card-title">Card title</h5>
+                <p className="card-text">Some quick example .</p>
+              </div>
+            </motion.div>
+            <motion.div variants={item} className={`card m-3 ${styles.artcard}`}  style={{width: '15rem'}}>
+              <img className={`card-img-top ${styles.artimage}`} src={Art2} alt="Card image cap" />
+              <div className="card-body">
+                <h5 className="card-title">Card title</h5>
+                <p className="card-text">Some quick example .</p>
+              </div>
+            </motion.div>
+            <motion.div variants={item} className={`card m-3 ${styles.artcard}`}  style={{width: '15rem'}}>
+              <img className={`card-img-top ${styles.artimage}`} src={Art3} alt="Card image cap" />
+              <div className="card-body">
+                <h5 className="card-title">Card title</h5>
+                <p className="card-text">Some quick example .</p>
+              </div>
+            </motion.div>
+          </motion.ul>
+        </div>
       </div>
     </div>
   );

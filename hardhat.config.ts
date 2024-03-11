@@ -1,8 +1,6 @@
 require('dotenv').config();
 require('@nomiclabs/hardhat-ethers');
 // require('@nomiclabs/hardhat-waffle')
-console.log(process.env.WEB3_API_URL);
-console.log(`0x${process.env.WEB3_PRIVATE_KEY}`);
 
 module.exports = {
   networks: {

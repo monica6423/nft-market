@@ -1,14 +1,7 @@
 import React from 'react';
 import { useState, useEffect, useCallback, useContext } from 'react';
-import { ethers } from 'ethers';
-import axios from 'axios';
-import Web3Modal from 'web3modal';
 import { Context } from '../context/context';
 import NFTCard from './NFTCard';
-// import Spinner from './Spinner'
-
-import { nftAddress, marketplaceAddress } from '../config';
-import { IPFS_BASE_URL } from '../constants';
 import { ItemWithMetadata, ItemMetadata } from '../types';
 import { getAllMarketItems } from '../hooks';
 
@@ -28,7 +21,6 @@ const UnsoldNFTs = () => {
     const items = await getAllMarketItems(provider || defaultProvider, signer);
 
     const unsoldItems = items.filter((item) => !item.sold && !item.canceled);
-    console.log(unsoldItems);
 
     setItems(unsoldItems);
     setLoading(false);
@@ -54,7 +46,7 @@ const UnsoldNFTs = () => {
     );
 
   return (
-    <div className="container">
+    <div className="container min-vh-100">
       <div className="row d-flex align-content-start flex-wrap gy-1">
         {items.map((item, i) => {
           return (

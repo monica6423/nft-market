@@ -1,7 +1,7 @@
 import { ethers } from 'ethers';
 import Web3Modal from 'web3modal';
 import axios from 'axios';
-import { Item, ItemMetadata, ItemWithMetadata } from '../types';
+import { Item, ItemMetadata } from '../types';
 import { IPFS_BASE_URL } from '../constants';
 import { extractIpfsHashFromUrl } from '../utils';
 import { nftAddress, marketplaceAddress } from '../config';
@@ -53,7 +53,6 @@ export const mintNFT = async (ipfsMetadataUrl: string, signer: ethers.Signer) =>
   const contract = tokenContract.connect(signer);
   const transaction = await contract.createToken(ipfsMetadataUrl);
   const tx = await transaction.wait();
-  console.log('mint tx: ', tx);
   return tx;
 };
 
@@ -99,7 +98,6 @@ export const getNFTByTokenId = async (
   }
 
   const ipfsMetadata = await fetchItemMetadata(tokenContract, provider, tokenId);
-  console.log('ipfsMetadata', ipfsMetadata);
   const item = {
     tokenId,
     owner,

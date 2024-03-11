@@ -1,8 +1,5 @@
 import React from 'react';
 import { useState, useEffect, useCallback, useContext } from 'react';
-import { ethers } from 'ethers';
-import axios from 'axios';
-import Web3Modal from 'web3modal';
 import { Context } from '../context/context';
 import NFTCard from './NFTCard';
 import { useParams } from 'react-router-dom';

@@ -25,7 +25,6 @@ const Wallet = () => {
     const signer = provider.getSigner();
     const address = await signer.getAddress();
     const network = await provider.getNetwork();
-    console.log('network', network);
 
     dispatch({
       type: 'CONNECT_WALLET',
@@ -44,7 +43,6 @@ const Wallet = () => {
   if (window.ethereum) {
     window.ethereum.on('accountsChanged', (accounts: any) => {
       // onAccountsChanged(accounts[0])
-      console.log('accounts', accounts);
       if (accounts.length && wallet.provider) window.location.reload();
     });
   }
@@ -68,7 +66,7 @@ const Wallet = () => {
   const getBlockData = async () => {
     const blockData = await wallet.provider.getBlock();
   };
-console.log(connectedNetwork)
+
   return (
     <div className="d-flex">
       {address && (

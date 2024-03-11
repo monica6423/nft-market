@@ -9,13 +9,11 @@ import CardImage from './CardImage';
 
 const NFTCard = ({
   itemId,
-  nftContract,
   tokenId,
   seller,
   owner,
   price,
   sold,
-  canceled,
   name,
   description,
   image,

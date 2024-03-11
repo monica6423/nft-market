@@ -28,8 +28,6 @@ const uploadFileToIPFS = async (file: FileInput) => {
         },
       });
 
-      console.log('uploadFileToIPFS result', result);
-
       return result.data.IpfsHash;
     } catch (error) {
       console.error(error);
@@ -46,8 +44,6 @@ const uploadFileToIPFS = async (file: FileInput) => {
           pinata_secret_api_key: process.env.REACT_APP_PINATA_SECRET_KEY,
         },
       });
-
-      console.log('uploadFileToIPFS result', result);
 
       return result.data.IpfsHash;
     } catch (error) {
@@ -147,9 +143,7 @@ const Create = () => {
 
     try {
       const added = await prepareNFT(file.data, formData);
-      console.log('mint added', added);
       const url = `ipfs://${added}`;
-      console.log('mint url', url);
       const tx = await mintNFT(url, signer);
     } catch (e) {
       console.error(e);
@@ -159,7 +153,7 @@ const Create = () => {
   const isValid = signer && file.data && formData.name && formData.description && formData.external_url ? true : false;
 
   return (
-    <div className="container d-flex justify-content-center">
+    <div className="container d-flex justify-content-center min-vh-100">
       <form className="d-flex flex-column">
         {loading && (
           <div className="">
